@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo qo'shish</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-blue-100">
+    <div class="flex justify-between bg-blue-400 items-center">
+        <h1 class="text-xl font-bold p-4">Todo qo'shish</h1>
+        <a href="{% url 'home' %}">
+            <button class="rounded-md bg-black text-white p-2 mr-4 cursor-pointer">Orqaga</button>
+        </a>
+    </div>
+
+    <form class="form p-4" method="post">
+        {% csrf_token %}
+        <div class="flex flex-col mb-4">
+            <label class="font-semibold mb-1">Edit todo</label>
+            <input value = {{todo.title}} name="title" class="border rounded-md p-2" placeholder="todo nomi">
+        </div>
+        
+        <div class="flex flex-col mb-4">
+            <label class="font-semibold mb-1">Description</label>
+            <textarea name="descriptions" class="border rounded-md p-2" placeholder="Tavsif"> {{todo.descreiptions}} </textarea>
+        </div>
+
+        <button type="submit" class="rounded-md bg-black text-white p-2 cursor-pointer">Saqlash</button>
+    </form>
+</body>
+</html>

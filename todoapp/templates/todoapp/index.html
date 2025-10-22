@@ -1,18 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mukhammadjans project</title>
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
 <body>
-    <h1>Hello world</h1>
-    <form action="/salom/" method="post">
-        {% csrf_token %}
-  
-        {{form.as_p}}
+    <div class="flex justify-between bg-blue-400 items-center">
+        <h1 class="text-xl font-bold p-4">Jami todolaringiz</h1>
+        <a href="{% url 'todo_create' %}"><button class="rounded-md bg-black text-white p-2 mr-4 cursor-pointer">Todo qo'shish</button></a>
+    </div>
 
-        <button type='sumbit'> Sumbit</button>
-    </form>
+    <ul class="bg-blue-100 h-screen p-4 flex flex-col gap-2">
+       {% for todo in todos %}
+       <li class="p-4 border border-indigo-600 rounded-md flex flex-row justify-between">
+        <a href="{% url 'todo_item' todo.id %}">{{todo.title}}</a>
+            <div class="flex flex-row gap-2">
+                <a href="{% url 'delete' todo.id %}"><button class="rounded-md bg-black text-white p-2 mr-4 cursor-pointer">O'chirish</button></a>
+                <a href="{% url 'edit' todo.id %}"><button class="rounded-md bg-black text-white p-2 mr-4 cursor-pointer">O'zgartirish</button></a>
+            </div>
+    </li>
+       {% endfor %}
+
+    </ul>
 </body>
 </html>
